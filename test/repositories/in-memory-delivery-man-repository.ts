@@ -4,6 +4,11 @@ import { DeliveryMan } from "../../src/domain/shipping/enterprise/entities/deliv
 export class InMemoryDeliveryManRepository implements DeliveryManRepository {
   public items: DeliveryMan[] = [];
 
+  async findMany(page: number): Promise<DeliveryMan[]> {
+    const deliveryMan = this.items.slice((page - 1) * 20, page * 20);
+    return deliveryMan;
+  }
+
   async delete(deliveryMan: DeliveryMan): Promise<void> {
     const index = this.items.findIndex((item) =>
       item.id.isEqual(deliveryMan.id)
