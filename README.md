@@ -11,7 +11,7 @@ O desafio consiste em desenvolver uma API para controle de encomendas de uma tra
 
 ### Regras da aplicação
 
-- [ ] A aplicação deve ter dois tipos de usuário, entregador e/ou admin
+- [x] A aplicação deve ter dois tipos de usuário, entregador e/ou admin
 - [ ] Deve ser possível realizar login com CPF e Senha
 - [ ] Deve ser possível realizar o CRUD dos entregadores
 - [ ] Deve ser possível realizar o CRUD das encomendas
@@ -34,3 +34,9 @@ O desafio consiste em desenvolver uma API para controle de encomendas de uma tra
 - [ ] Somente o entregador que retirou a encomenda pode marcar ela como entregue
 - [ ] Somente o admin pode alterar a senha de um usuário
 - [ ] Não deve ser possível um entregador listar as encomendas de outro entregador
+
+### Diagrama de classes
+
+#### Shipping context
+
+![alt text](./assets/image.png)
