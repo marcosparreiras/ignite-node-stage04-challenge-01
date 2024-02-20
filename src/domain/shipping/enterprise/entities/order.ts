@@ -4,21 +4,22 @@ import { Optional } from "../../../core/types/optional";
 import { DeliveryStage } from "../object-values/delivery-stage";
 
 interface OrderProps {
-  remitteId: UniqueEntityId;
+  remitteeId: UniqueEntityId;
   deliveryManId: UniqueEntityId;
   deliveryLocation: Location;
   deliveryStage: DeliveryStage;
+  deliveryConfirmationPhotoUrl?: string | null;
   createdAt: Date;
   updatedAt?: Date | null;
 }
 
 export class Order extends Entity<OrderProps> {
   get remitteId() {
-    return this.props.remitteId;
+    return this.props.remitteeId;
   }
 
-  set remitteId(remitteId: UniqueEntityId) {
-    this.props.remitteId = remitteId;
+  set remitteId(remitteeId: UniqueEntityId) {
+    this.props.remitteeId = remitteeId;
     this.touch();
   }
 
@@ -48,6 +49,14 @@ export class Order extends Entity<OrderProps> {
     this.deliveryStage = stage;
   }
 
+  get deliveryConfirmationPhotoUrl(): string | null | undefined {
+    return this.props.deliveryConfirmationPhotoUrl;
+  }
+
+  set deliveryConfirmationPhotoUrl(url: string) {
+    this.props.deliveryConfirmationPhotoUrl = url;
+  }
+
   get createdAt() {
     return this.props.createdAt;
   }
@@ -66,10 +75,11 @@ export class Order extends Entity<OrderProps> {
   ) {
     return new Order(
       {
-        remitteId: props.remitteId,
+        remitteeId: props.remitteeId,
         deliveryManId: props.deliveryManId,
         deliveryLocation: props.deliveryLocation,
         deliveryStage: props.deliveryStage ?? new DeliveryStage(),
+        deliveryConfirmationPhotoUrl: props.deliveryConfirmationPhotoUrl,
         createdAt: props.createdAt ?? new Date(),
         updatedAt: props.updatedAt,
       },
