@@ -1,4 +1,4 @@
-import { HashCompare } from "../../cryptography/hash-compare";
+import { HashCompare } from "../cryptography/hash-compare";
 import { InvalidCredentialsError } from "../errors/invalid-credentials-error";
 import { DeliveryManRepository } from "../repositories/delivery-man-repository";
 

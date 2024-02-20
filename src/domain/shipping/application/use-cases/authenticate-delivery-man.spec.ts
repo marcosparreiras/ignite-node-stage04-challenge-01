@@ -5,7 +5,7 @@ import { InMemoryDeliveryManRepository } from "../../../../../test/repositories/
 import { InvalidCredentialsError } from "../errors/invalid-credentials-error";
 import { AuthenticateDeliveryManUseCase } from "./authenticate-delivery-man";
 
-describe("AuthenticateDeliveryManUseCase [use-case]", () => {
+describe("AuthenticateDeliveryManUseCase [Use-Case]", () => {
   let inMemoryDeliveryManRepository: InMemoryDeliveryManRepository;
   let fakeHashCompare: FakeHashCompare;
   let fakeHashGenerator: FakeHashGenerator;
