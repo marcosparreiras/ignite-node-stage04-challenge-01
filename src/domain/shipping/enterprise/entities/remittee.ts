@@ -4,12 +4,12 @@ import { Person, PersonProps } from "./Person";
 
 interface RemitteProps extends PersonProps {}
 
-export class Remitte extends Person<RemitteProps> {
+export class Remittee extends Person<RemitteProps> {
   static create(
     props: Optional<RemitteProps, "createdAt">,
     id?: UniqueEntityId
   ) {
-    return new Remitte(
+    return new Remittee(
       {
         cpf: props.cpf,
         name: props.name,
