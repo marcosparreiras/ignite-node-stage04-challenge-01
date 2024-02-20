@@ -1,9 +1,11 @@
 import { DeliveryMan } from "../../enterprise/entities/deliveryMan";
 import { HashGenerator } from "../cryptography/hash-generator";
 import { DeliveryManAlreadyExistsError } from "../errors/delivery-man-already-exists-error";
+import { NotAllowedError } from "../errors/not-allowed-error";
 import { DeliveryManRepository } from "../repositories/delivery-man-repository";
 
 interface CreateDeliveryManUseCaseRequest {
+  adminId: string;
   cpf: string;
   name: string;
   password: string;
@@ -20,10 +22,16 @@ export class CreateDeliveryManUseCase {
   ) {}
 
   async execute({
+    adminId,
     cpf,
     name,
     password,
   }: CreateDeliveryManUseCaseRequest): Promise<CreateDeliveryManUseCaseResponse> {
+    const admin = await this.deliveryManRepository.findById(adminId);
+    if (!admin || !admin.isAdmin) {
+      throw new NotAllowedError();
+    }
+
     const deliveryManAlreadyExists = await this.deliveryManRepository.findByCpf(
       cpf
     );

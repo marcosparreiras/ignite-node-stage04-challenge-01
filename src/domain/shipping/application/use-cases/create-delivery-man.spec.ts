@@ -1,10 +1,8 @@
-import { FakeHashCompare } from "../../../../../test/cryptography/fake-hash-compare";
 import { FakeHashGenerator } from "../../../../../test/cryptography/fake-hash-generator";
 import { makeDeliveryMan } from "../../../../../test/factories/make-delivery-man";
 import { InMemoryDeliveryManRepository } from "../../../../../test/repositories/in-memory-delivery-man-repository";
 import { DeliveryManAlreadyExistsError } from "../errors/delivery-man-already-exists-error";
-import { InvalidCredentialsError } from "../errors/invalid-credentials-error";
-import { AuthenticateDeliveryManUseCase } from "./authenticate-delivery-man";
+import { NotAllowedError } from "../errors/not-allowed-error";
 import { CreateDeliveryManUseCase } from "./create-delivery-man";
 
 describe("CreateDeliveryManUseCase [Use-Case]", () => {
@@ -22,30 +20,49 @@ describe("CreateDeliveryManUseCase [Use-Case]", () => {
   });
 
   it("Should be able to create a delivery-man", async () => {
+    const admin = makeDeliveryMan({ isAdmin: true });
+    inMemoryDeliveryManRepository.items.push(admin);
+
     const result = await sut.execute({
+      adminId: admin.id.toString(),
       cpf: "00325607248",
       name: "john doe",
-      password: "12356",
+      password: "123456",
     });
 
     expect(result.deliveryMan).toEqual(
       expect.objectContaining({
         cpf: "00325607248",
         name: "john doe",
+        password: await fakeHashGenerator.hash("123456"),
       })
     );
   });
 
   it("Should not be able to create duplicate delivery-man", async () => {
+    const admin = makeDeliveryMan({ isAdmin: true });
     const deliveryMan = makeDeliveryMan();
+    inMemoryDeliveryManRepository.items.push(admin);
     inMemoryDeliveryManRepository.items.push(deliveryMan);
 
     await expect(() => {
       return sut.execute({
+        adminId: admin.id.toString(),
         cpf: deliveryMan.cpf,
         password: "123456",
         name: "john  doe",
       });
     }).rejects.toBeInstanceOf(DeliveryManAlreadyExistsError);
+  });
+
+  it("Should not be able to create delivery-man without a valid admin", async () => {
+    await expect(() => {
+      return sut.execute({
+        adminId: "fake-admin-id",
+        cpf: "00325607248",
+        password: "123456",
+        name: "john  doe",
+      });
+    }).rejects.toBeInstanceOf(NotAllowedError);
   });
 });
