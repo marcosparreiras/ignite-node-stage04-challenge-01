@@ -1,12 +1,10 @@
 import { Optional } from "../../../core/types/optional";
 import { Person, PersonProps } from "./Person";
 import { UniqueEntityId } from "../../../core/entities/unique-entity-id";
-import { Location } from "../object-values/location";
 
 export interface DeliveryManProps extends PersonProps {
   password: string;
   isAdmin: boolean;
-  lastLocation: Location | null;
 }
 
 export class DeliveryMan extends Person<DeliveryManProps> {
@@ -28,17 +26,8 @@ export class DeliveryMan extends Person<DeliveryManProps> {
     this.touch();
   }
 
-  get lastLocation(): Location | null {
-    return this.props.lastLocation;
-  }
-
-  set lastLocation(lastLocation: Location) {
-    this.props.lastLocation = lastLocation;
-    this.touch();
-  }
-
   static create(
-    props: Optional<DeliveryManProps, "createdAt" | "isAdmin" | "lastLocation">,
+    props: Optional<DeliveryManProps, "createdAt" | "isAdmin">,
     id?: UniqueEntityId
   ) {
     return new DeliveryMan(
@@ -47,7 +36,6 @@ export class DeliveryMan extends Person<DeliveryManProps> {
         name: props.name,
         password: props.password,
         isAdmin: props.isAdmin ?? false,
-        lastLocation: props.lastLocation ?? null,
         createdAt: props.createdAt ?? new Date(),
         updatedAt: props.updatedAt,
       },
