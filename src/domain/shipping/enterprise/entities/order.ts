@@ -40,6 +40,14 @@ export class Order extends Entity<OrderProps> {
     this.touch();
   }
 
+  get deliveryStage() {
+    return this.props.deliveryStage;
+  }
+
+  set deliveryStage(stage: DeliveryStage) {
+    this.deliveryStage = stage;
+  }
+
   get createdAt() {
     return this.props.createdAt;
   }

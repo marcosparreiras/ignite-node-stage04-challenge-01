@@ -3,7 +3,7 @@ import { Person, PersonProps } from "./Person";
 import { UniqueEntityId } from "../../../core/entities/unique-entity-id";
 import { Location } from "../object-values/location";
 
-interface DeliveryManProps extends PersonProps {
+export interface DeliveryManProps extends PersonProps {
   password: string;
   isAdmin: boolean;
   lastLocation: Location | null;
