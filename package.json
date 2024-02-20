@@ -1,0 +1,19 @@
+{
+  "name": "challenge-01",
+  "version": "1.0.0",
+  "description": "O desafio consiste em desenvolver uma API para controle de encomendas de uma transportadora fictícia, a FastFeet.",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest ./src/domain"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3",
+    "vite-tsconfig-paths": "^4.3.1",
+    "vitest": "^1.3.1"
+  }
+}
