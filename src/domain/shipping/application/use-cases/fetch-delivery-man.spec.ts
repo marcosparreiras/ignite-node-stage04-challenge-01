@@ -1,7 +1,7 @@
 import { makeDeliveryMan } from "../../../../../test/factories/make-delivery-man";
 import { InMemoryDeliveryManRepository } from "../../../../../test/repositories/in-memory-delivery-man-repository";
 import { NotAllowedError } from "../errors/not-allowed-error";
-import { FetchDeliveryManUseCase } from "./fecth-delivery-man";
+import { FetchDeliveryManUseCase } from "./fetch-delivery-man";
 
 describe("FetchDeliveryManUseCase [Use-Case]", () => {
   let inMemoryDeliveryManRepository: InMemoryDeliveryManRepository;
