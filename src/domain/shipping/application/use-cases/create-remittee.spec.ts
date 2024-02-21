@@ -1,25 +1,26 @@
-import { FakeHashGenerator } from "../../../../../test/cryptography/fake-hash-generator";
 import { makeDeliveryMan } from "../../../../../test/factories/make-delivery-man";
+import { MakeRemittee } from "../../../../../test/factories/make-remittee";
 import { InMemoryDeliveryManRepository } from "../../../../../test/repositories/in-memory-delivery-man-repository";
-import { DeliveryManAlreadyExistsError } from "../errors/delivery-man-already-exists-error";
+import { InMemoryRemitteeRepository } from "../../../../../test/repositories/in-memory-remittee-repository";
 import { NotAllowedError } from "../errors/not-allowed-error";
-import { CreateDeliveryManUseCase } from "./create-delivery-man";
+import { RemitteeAlreadyExistsError } from "../errors/remittee-already-exists-error";
+import { CreateRemitteeUseCase } from "./create-remittee";
 
-describe("CreateDeliveryManUseCase [Use-Case]", () => {
+describe("CreateRemitteeUseCase [Use-Case]", () => {
   let inMemoryDeliveryManRepository: InMemoryDeliveryManRepository;
-  let fakeHashGenerator: FakeHashGenerator;
-  let sut: CreateDeliveryManUseCase;
+  let inMemoryRemitteeRepository: InMemoryRemitteeRepository;
+  let sut: CreateRemitteeUseCase;
 
   beforeEach(() => {
     inMemoryDeliveryManRepository = new InMemoryDeliveryManRepository();
-    fakeHashGenerator = new FakeHashGenerator();
-    sut = new CreateDeliveryManUseCase(
+    inMemoryRemitteeRepository = new InMemoryRemitteeRepository();
+    sut = new CreateRemitteeUseCase(
       inMemoryDeliveryManRepository,
-      fakeHashGenerator
+      inMemoryRemitteeRepository
     );
   });
 
-  it("Should be able to create a delivery-man", async () => {
+  it("Should be able to create a remittee", async () => {
     const admin = makeDeliveryMan({ isAdmin: true });
     inMemoryDeliveryManRepository.items.push(admin);
 
@@ -27,39 +28,36 @@ describe("CreateDeliveryManUseCase [Use-Case]", () => {
       adminId: admin.id.toString(),
       cpf: "00325607248",
       name: "john doe",
-      password: "123456",
     });
 
-    expect(result.deliveryMan).toEqual(
+    expect(result.remittee).toEqual(
       expect.objectContaining({
         cpf: "00325607248",
         name: "john doe",
-        password: await fakeHashGenerator.hash("123456"),
       })
     );
   });
 
-  it("Should not be able to create duplicate delivery-man", async () => {
+  it("Should not be able to create duplicate remittee", async () => {
     const admin = makeDeliveryMan({ isAdmin: true });
-    const deliveryMan = makeDeliveryMan();
-    inMemoryDeliveryManRepository.items.push(admin, deliveryMan);
+    const remittee = MakeRemittee();
+    inMemoryDeliveryManRepository.items.push(admin);
+    inMemoryRemitteeRepository.items.push(remittee);
 
     await expect(() => {
       return sut.execute({
         adminId: admin.id.toString(),
-        cpf: deliveryMan.cpf,
-        password: "123456",
+        cpf: remittee.cpf,
         name: "john  doe",
       });
-    }).rejects.toBeInstanceOf(DeliveryManAlreadyExistsError);
+    }).rejects.toBeInstanceOf(RemitteeAlreadyExistsError);
   });
 
-  it("Should not be able to create delivery-man without a valid admin", async () => {
+  it("Should not be able to create remittee without a valid admin", async () => {
     await expect(() => {
       return sut.execute({
         adminId: "fake-admin-id",
         cpf: "00325607248",
-        password: "123456",
         name: "john  doe",
       });
     }).rejects.toBeInstanceOf(NotAllowedError);
