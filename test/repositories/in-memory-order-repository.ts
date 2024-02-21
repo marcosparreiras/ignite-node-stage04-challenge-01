@@ -9,6 +9,11 @@ export class InMemoryOrderRepository implements OrderRepository {
     return order ?? null;
   }
 
+  async findMany(page: number): Promise<Order[]> {
+    const orders = this.items.slice((page - 1) * 20, page * 20);
+    return orders;
+  }
+
   async create(order: Order): Promise<void> {
     this.items.push(order);
   }
