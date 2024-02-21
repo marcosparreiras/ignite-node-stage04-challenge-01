@@ -41,7 +41,7 @@ describe("FetchDeliveryManUseCase [Use-Case]", () => {
     }).rejects.toBeInstanceOf(NotAllowedError);
   });
 
-  it("Should be able to paginate delivery-man resuts", async () => {
+  it("Should be able to paginate delivery-man results", async () => {
     const admin = makeDeliveryMan({ isAdmin: true });
     inMemoryDeliveryManRepository.items.push(admin);
 

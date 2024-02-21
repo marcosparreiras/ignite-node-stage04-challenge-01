@@ -13,6 +13,11 @@ export class InMemoryRemitteeRepository implements RemitteeRepository {
     return remittee ?? null;
   }
 
+  async findMany(page: number): Promise<Remittee[]> {
+    const remittees = this.items.slice((page - 1) * 20, page * 20);
+    return remittees;
+  }
+
   async create(remittee: Remittee): Promise<void> {
     this.items.push(remittee);
   }
