@@ -5,5 +5,6 @@ export interface RemitteeRepository {
   findById(id: string): Promise<Remittee | null>;
   findMany(page: number): Promise<Remittee[]>;
   create(remittee: Remittee): Promise<void>;
+  save(remitte: Remittee): Promise<void>;
   delete(remittee: Remittee): Promise<void>;
 }
