@@ -4,7 +4,7 @@ import { Optional } from "../../../core/types/optional";
 import { DeliveryStage } from "../object-values/delivery-stage";
 import { Location } from "../object-values/location";
 
-interface OrderProps {
+export interface OrderProps {
   remitteeId: UniqueEntityId;
   deliveryManId: UniqueEntityId;
   deliveryLocation: Location;
