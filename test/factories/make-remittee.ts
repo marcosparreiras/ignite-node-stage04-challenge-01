@@ -5,7 +5,7 @@ import {
   Remittee,
 } from "../../src/domain/shipping/enterprise/entities/remittee";
 
-export function MakeRemittee(
+export function makeRemittee(
   overide: Partial<RemitteProps> = {},
   id?: UniqueEntityId
 ) {

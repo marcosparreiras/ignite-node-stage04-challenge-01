@@ -4,24 +4,24 @@ import { InMemoryDeliveryManRepository } from "../../../../../test/repositories/
 import { InMemoryRemitteeRepository } from "../../../../../test/repositories/in-memory-remittee-repository";
 import { NotAllowedError } from "../errors/not-allowed-error";
 import { ResourceNotFoundError } from "../errors/resource-not-found-error";
-import { DeleteDeliveryManUseCase } from "./delete-delivery-man";
-import { DeleteRemitteeUseCase } from "./delete-remittee";
+import { GetDeliveryManUseCase } from "./get-delivery-man";
+import { GetRemitteeUseCase } from "./get-remittee";
 
-describe("DeleteRemitteeUseCase [Use-Case]", () => {
+describe("GetRemitteeUseCase [Use-Case]", () => {
   let inMemoryDeliveryManRepository: InMemoryDeliveryManRepository;
   let inMemoryRemitteeRepository: InMemoryRemitteeRepository;
-  let sut: DeleteRemitteeUseCase;
+  let sut: GetRemitteeUseCase;
 
   beforeEach(() => {
     inMemoryDeliveryManRepository = new InMemoryDeliveryManRepository();
     inMemoryRemitteeRepository = new InMemoryRemitteeRepository();
-    sut = new DeleteRemitteeUseCase(
+    sut = new GetRemitteeUseCase(
       inMemoryDeliveryManRepository,
       inMemoryRemitteeRepository
     );
   });
 
-  it("Should be able to delete a remittee", async () => {
+  it("Should be able to get a remittee", async () => {
     const admin = makeDeliveryMan({ isAdmin: true });
     const remittee = makeRemittee();
     inMemoryDeliveryManRepository.items.push(admin);
@@ -32,10 +32,15 @@ describe("DeleteRemitteeUseCase [Use-Case]", () => {
       remitteeId: remittee.id.toString(),
     });
 
-    expect(result.success).toEqual(true);
+    expect(result.remittee).toEqual(
+      expect.objectContaining({
+        cpf: remittee.cpf,
+        name: remittee.name,
+      })
+    );
   });
 
-  it("Should not be able to delete a remittee without a valid admin", async () => {
+  it("Should not be able to get a remittee without a valid admin", async () => {
     const remittee = makeRemittee();
     inMemoryRemitteeRepository.items.push(remittee);
 
@@ -47,7 +52,7 @@ describe("DeleteRemitteeUseCase [Use-Case]", () => {
     }).rejects.toBeInstanceOf(NotAllowedError);
   });
 
-  it("Should not be able to delete an unexistent remittee", async () => {
+  it("Should not be able to get an unexistent remittee", async () => {
     const admin = makeDeliveryMan({ isAdmin: true });
     inMemoryDeliveryManRepository.items.push(admin);
 

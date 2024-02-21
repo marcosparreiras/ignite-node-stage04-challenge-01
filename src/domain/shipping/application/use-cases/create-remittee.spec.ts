@@ -1,5 +1,5 @@
 import { makeDeliveryMan } from "../../../../../test/factories/make-delivery-man";
-import { MakeRemittee } from "../../../../../test/factories/make-remittee";
+import { makeRemittee } from "../../../../../test/factories/make-remittee";
 import { InMemoryDeliveryManRepository } from "../../../../../test/repositories/in-memory-delivery-man-repository";
 import { InMemoryRemitteeRepository } from "../../../../../test/repositories/in-memory-remittee-repository";
 import { NotAllowedError } from "../errors/not-allowed-error";
@@ -40,7 +40,7 @@ describe("CreateRemitteeUseCase [Use-Case]", () => {
 
   it("Should not be able to create duplicate remittee", async () => {
     const admin = makeDeliveryMan({ isAdmin: true });
-    const remittee = MakeRemittee();
+    const remittee = makeRemittee();
     inMemoryDeliveryManRepository.items.push(admin);
     inMemoryRemitteeRepository.items.push(remittee);
 
