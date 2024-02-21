@@ -2,6 +2,7 @@ import { Entity } from "../../../core/entities/entity";
 import { UniqueEntityId } from "../../../core/entities/unique-entity-id";
 import { Optional } from "../../../core/types/optional";
 import { DeliveryStage } from "../object-values/delivery-stage";
+import { Location } from "../object-values/location";
 
 interface OrderProps {
   remitteeId: UniqueEntityId;
