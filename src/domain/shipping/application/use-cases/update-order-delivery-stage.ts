@@ -14,7 +14,6 @@ interface UpdateOrderDeliveryStageUseCaseRequest {
   deliveryManId: string;
   orderId: string;
   deliveryStage: string;
-  deliveryConfirmationPhotoUrl?: string;
 }
 
 interface UpdateOrderDeliveryStageUseCaseResponse {
@@ -31,7 +30,6 @@ export class UpdateOrderDeliveryStageUseCase {
     deliveryManId,
     orderId,
     deliveryStage,
-    deliveryConfirmationPhotoUrl,
   }: UpdateOrderDeliveryStageUseCaseRequest): Promise<UpdateOrderDeliveryStageUseCaseResponse> {
     const deliveryMan = await this.deliveryManRepository.findById(
       deliveryManId
@@ -50,11 +48,10 @@ export class UpdateOrderDeliveryStageUseCase {
       throw new InvalidDeliveryStageError();
     }
 
-    if (deliveryStage === "DELIVERED" && !deliveryConfirmationPhotoUrl) {
+    if (deliveryStage === "DELIVERED" && !order.deliveryConfirmationPhotoUrl) {
       throw new MissingDeliveryPhotoUrlError();
     }
 
-    order.deliveryConfirmationPhotoUrl = deliveryConfirmationPhotoUrl;
     order.deliveryStage = new DeliveryStage(
       DeliveryStageEnum[deliveryStage as keyof typeof DeliveryStageEnum]
     );

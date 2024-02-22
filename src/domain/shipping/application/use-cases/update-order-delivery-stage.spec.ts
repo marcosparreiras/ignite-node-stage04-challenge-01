@@ -106,7 +106,10 @@ describe("UpdateOrderDeliveryStageUseCase [Use-Case]", () => {
 
   it("Should be able to update order delivery stage to DELIVERED with confirmation photo", async () => {
     const deliveryMan = makeDeliveryMan();
-    const order = makeOrder({ deliveryManId: deliveryMan.id });
+    const order = makeOrder({
+      deliveryManId: deliveryMan.id,
+      deliveryConfirmationPhotoUrl: "delivery-confirmation-url",
+    });
 
     inMemoryDeliveryManRepository.items.push(deliveryMan);
     inMemoryOrderRepository.items.push(order);
@@ -115,7 +118,6 @@ describe("UpdateOrderDeliveryStageUseCase [Use-Case]", () => {
       deliveryManId: deliveryMan.id.toString(),
       orderId: order.id.toString(),
       deliveryStage: "DELIVERED",
-      deliveryConfirmationPhotoUrl: "delivery_photo_confirmation_url",
     });
 
     expect(result.order.deliveryStage.stage).toEqual("DELIVERED");
