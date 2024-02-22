@@ -47,14 +47,14 @@ export class Order extends Entity<OrderProps> {
   }
 
   set deliveryStage(stage: DeliveryStage) {
-    this.deliveryStage = stage;
+    this.props.deliveryStage = stage;
   }
 
   get deliveryConfirmationPhotoUrl(): string | null | undefined {
     return this.props.deliveryConfirmationPhotoUrl;
   }
 
-  set deliveryConfirmationPhotoUrl(url: string) {
+  set deliveryConfirmationPhotoUrl(url: string | null | undefined) {
     this.props.deliveryConfirmationPhotoUrl = url;
   }
 
