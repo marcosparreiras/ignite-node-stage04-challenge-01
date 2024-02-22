@@ -14,6 +14,16 @@ export class InMemoryOrderRepository implements OrderRepository {
     return orders;
   }
 
+  async findManyByRemitteeId(
+    remitteeId: string,
+    page: number
+  ): Promise<Order[]> {
+    const orders = this.items
+      .filter((item) => item.remitteId.toString() === remitteeId)
+      .slice((page - 1) * 20, page * 20);
+    return orders;
+  }
+
   async findManyByDeliveryManId(
     deliveryManId: string,
     page: number
