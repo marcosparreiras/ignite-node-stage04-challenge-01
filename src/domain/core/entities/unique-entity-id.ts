@@ -7,7 +7,7 @@ export class UniqueEntityId {
     return this._value;
   }
 
-  public isEqual(id: UniqueEntityId) {
+  public equals(id: UniqueEntityId) {
     return this._value === id.toString();
   }
 

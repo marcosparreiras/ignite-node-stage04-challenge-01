@@ -1,5 +1,5 @@
 import { Remittee } from "../../enterprise/entities/remittee";
-import { NotAllowedError } from "../errors/not-allowed-error";
+import { NotAllowedError } from "../../../core/errors/not-allowed-error";
 import { DeliveryManRepository } from "../repositories/delivery-man-repository";
 import { RemitteeRepository } from "../repositories/remittee-repository";
 

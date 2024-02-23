@@ -23,12 +23,12 @@ export class InMemoryRemitteeRepository implements RemitteeRepository {
   }
 
   async save(remitte: Remittee): Promise<void> {
-    const index = this.items.findIndex((item) => item.id.isEqual(remitte.id));
+    const index = this.items.findIndex((item) => item.id.equals(remitte.id));
     this.items[index] = remitte;
   }
 
   async delete(remittee: Remittee): Promise<void> {
-    const index = this.items.findIndex((item) => item.id.isEqual(remittee.id));
+    const index = this.items.findIndex((item) => item.id.equals(remittee.id));
     this.items.splice(index, 1);
   }
 }

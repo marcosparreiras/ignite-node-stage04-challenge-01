@@ -2,8 +2,8 @@ import { makeDeliveryMan } from "../../../../../test/factories/make-delivery-man
 import { makeOrder } from "../../../../../test/factories/make-order";
 import { InMemoryDeliveryManRepository } from "../../../../../test/repositories/in-memory-delivery-man-repository";
 import { InMemoryOrderRepository } from "../../../../../test/repositories/in-memory-order-repository";
-import { NotAllowedError } from "../errors/not-allowed-error";
-import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { NotAllowedError } from "../../../core/errors/not-allowed-error";
+import { ResourceNotFoundError } from "../../../core/errors/resource-not-found-error";
 import { GetOrderUseCase } from "./get-order";
 
 describe("GetOrderUseCase [Use-Case]", () => {

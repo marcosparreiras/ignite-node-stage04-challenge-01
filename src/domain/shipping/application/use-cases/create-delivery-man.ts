@@ -1,7 +1,7 @@
 import { DeliveryMan } from "../../enterprise/entities/deliveryMan";
 import { HashGenerator } from "../cryptography/hash-generator";
-import { DeliveryManAlreadyExistsError } from "../errors/delivery-man-already-exists-error";
-import { NotAllowedError } from "../errors/not-allowed-error";
+import { DeliveryManAlreadyExistsError } from "../../../core/errors/delivery-man-already-exists-error";
+import { NotAllowedError } from "../../../core/errors/not-allowed-error";
 import { DeliveryManRepository } from "../repositories/delivery-man-repository";
 
 interface CreateDeliveryManUseCaseRequest {

@@ -1,6 +1,6 @@
 import { Remittee } from "../../enterprise/entities/remittee";
-import { NotAllowedError } from "../errors/not-allowed-error";
-import { RemitteeAlreadyExistsError } from "../errors/remittee-already-exists-error";
+import { NotAllowedError } from "../../../core/errors/not-allowed-error";
+import { RemitteeAlreadyExistsError } from "../../../core/errors/remittee-already-exists-error";
 import { DeliveryManRepository } from "../repositories/delivery-man-repository";
 import { RemitteeRepository } from "../repositories/remittee-repository";
 

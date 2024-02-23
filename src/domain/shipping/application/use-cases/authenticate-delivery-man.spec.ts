@@ -2,7 +2,7 @@ import { FakeHashCompare } from "../../../../../test/cryptography/fake-hash-comp
 import { FakeHashGenerator } from "../../../../../test/cryptography/fake-hash-generator";
 import { makeDeliveryMan } from "../../../../../test/factories/make-delivery-man";
 import { InMemoryDeliveryManRepository } from "../../../../../test/repositories/in-memory-delivery-man-repository";
-import { InvalidCredentialsError } from "../errors/invalid-credentials-error";
+import { InvalidCredentialsError } from "../../../core/errors/invalid-credentials-error";
 import { AuthenticateDeliveryManUseCase } from "./authenticate-delivery-man";
 
 describe("AuthenticateDeliveryManUseCase [Use-Case]", () => {

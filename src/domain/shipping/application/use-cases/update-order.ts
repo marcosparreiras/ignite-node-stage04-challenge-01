@@ -1,8 +1,8 @@
 import { Order } from "../../enterprise/entities/order";
 import { Location } from "../../enterprise/object-values/location";
-import { InvalidGeoCoordinatesError } from "../errors/invalid-geo-coordinates-error";
-import { NotAllowedError } from "../errors/not-allowed-error";
-import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { InvalidGeoCoordinatesError } from "../../../core/errors/invalid-geo-coordinates-error";
+import { NotAllowedError } from "../../../core/errors/not-allowed-error";
+import { ResourceNotFoundError } from "../../../core/errors/resource-not-found-error";
 import { DeliveryManRepository } from "../repositories/delivery-man-repository";
 import { OrderRepository } from "../repositories/order-repository";
 import { RemitteeRepository } from "../repositories/remittee-repository";

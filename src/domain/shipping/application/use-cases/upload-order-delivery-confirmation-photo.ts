@@ -1,6 +1,6 @@
-import { InvalidOrderDeliveryConfirmationPhotoTypeError } from "../errors/invalid-order-delivery-confirmation-photo-type-error";
-import { NotAllowedError } from "../errors/not-allowed-error";
-import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { InvalidOrderDeliveryConfirmationPhotoTypeError } from "../../../core/errors/invalid-order-delivery-confirmation-photo-type-error";
+import { NotAllowedError } from "../../../core/errors/not-allowed-error";
+import { ResourceNotFoundError } from "../../../core/errors/resource-not-found-error";
 import { DeliveryManRepository } from "../repositories/delivery-man-repository";
 import { OrderRepository } from "../repositories/order-repository";
 import { Uploader } from "../storage/uploader";
@@ -40,7 +40,7 @@ export class UploadOrderDeliveryConfirmationPhotoUseCase {
       throw new ResourceNotFoundError();
     }
 
-    if (!deliveryMan.isAdmin && !deliveryMan.id.isEqual(order.deliveryManId)) {
+    if (!deliveryMan.isAdmin && !deliveryMan.id.equals(order.deliveryManId)) {
       throw new NotAllowedError();
     }
 

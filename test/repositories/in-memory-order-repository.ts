@@ -68,12 +68,12 @@ export class InMemoryOrderRepository implements OrderRepository {
   }
 
   async save(order: Order): Promise<void> {
-    const index = this.items.findIndex((item) => item.id.isEqual(order.id));
+    const index = this.items.findIndex((item) => item.id.equals(order.id));
     this.items[index] = order;
   }
 
   async delete(order: Order): Promise<void> {
-    const index = this.items.findIndex((item) => item.id.isEqual(order.id));
+    const index = this.items.findIndex((item) => item.id.equals(order.id));
     this.items.splice(index, 1);
   }
 }

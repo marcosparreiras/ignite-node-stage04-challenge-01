@@ -1,6 +1,6 @@
 import { Order } from "../../enterprise/entities/order";
-import { NotAllowedError } from "../errors/not-allowed-error";
-import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { NotAllowedError } from "../../../core/errors/not-allowed-error";
+import { ResourceNotFoundError } from "../../../core/errors/resource-not-found-error";
 import { DeliveryManRepository } from "../repositories/delivery-man-repository";
 import { OrderRepository } from "../repositories/order-repository";
 
@@ -32,7 +32,7 @@ export class ReturnOrderUseCase {
       throw new ResourceNotFoundError();
     }
 
-    if (!deliveryMan.isAdmin && !deliveryMan.id.isEqual(order.deliveryManId)) {
+    if (!deliveryMan.isAdmin && !deliveryMan.id.equals(order.deliveryManId)) {
       throw new NotAllowedError();
     }
 

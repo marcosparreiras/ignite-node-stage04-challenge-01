@@ -3,9 +3,9 @@ import { makeOrder } from "../../../../../test/factories/make-order";
 import { InMemoryDeliveryManRepository } from "../../../../../test/repositories/in-memory-delivery-man-repository";
 import { InMemoryOrderRepository } from "../../../../../test/repositories/in-memory-order-repository";
 import { FakeUploader } from "../../../../../test/storage/fake-uploader";
-import { InvalidOrderDeliveryConfirmationPhotoTypeError } from "../errors/invalid-order-delivery-confirmation-photo-type-error";
-import { NotAllowedError } from "../errors/not-allowed-error";
-import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { InvalidOrderDeliveryConfirmationPhotoTypeError } from "../../../core/errors/invalid-order-delivery-confirmation-photo-type-error";
+import { NotAllowedError } from "../../../core/errors/not-allowed-error";
+import { ResourceNotFoundError } from "../../../core/errors/resource-not-found-error";
 import { UploadOrderDeliveryConfirmationPhotoUseCase } from "./upload-order-delivery-confirmation-photo";
 
 describe("UploadOrderDeliveryConfirmationPhotoUseCase [Use-Case]", () => {

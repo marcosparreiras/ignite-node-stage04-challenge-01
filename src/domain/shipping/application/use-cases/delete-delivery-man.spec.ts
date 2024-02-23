@@ -1,7 +1,7 @@
 import { makeDeliveryMan } from "../../../../../test/factories/make-delivery-man";
 import { InMemoryDeliveryManRepository } from "../../../../../test/repositories/in-memory-delivery-man-repository";
-import { NotAllowedError } from "../errors/not-allowed-error";
-import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { NotAllowedError } from "../../../core/errors/not-allowed-error";
+import { ResourceNotFoundError } from "../../../core/errors/resource-not-found-error";
 import { DeleteDeliveryManUseCase } from "./delete-delivery-man";
 
 describe("DeleteDeliveryManUseCase [Use-Case]", () => {

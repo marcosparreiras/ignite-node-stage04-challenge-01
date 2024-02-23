@@ -1,6 +1,6 @@
 import { Remittee } from "../../enterprise/entities/remittee";
-import { NotAllowedError } from "../errors/not-allowed-error";
-import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { NotAllowedError } from "../../../core/errors/not-allowed-error";
+import { ResourceNotFoundError } from "../../../core/errors/resource-not-found-error";
 import { DeliveryManRepository } from "../repositories/delivery-man-repository";
 import { RemitteeRepository } from "../repositories/remittee-repository";
 

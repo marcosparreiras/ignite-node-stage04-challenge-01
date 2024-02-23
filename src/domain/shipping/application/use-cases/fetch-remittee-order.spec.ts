@@ -2,7 +2,7 @@ import { makeOrder } from "../../../../../test/factories/make-order";
 import { makeRemittee } from "../../../../../test/factories/make-remittee";
 import { InMemoryOrderRepository } from "../../../../../test/repositories/in-memory-order-repository";
 import { InMemoryRemitteeRepository } from "../../../../../test/repositories/in-memory-remittee-repository";
-import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { ResourceNotFoundError } from "../../../core/errors/resource-not-found-error";
 import { FetchRemitteeOrderUseCase } from "./fetch-remittee-order";
 
 describe("FetchRemitteeOrderUseCase", () => {

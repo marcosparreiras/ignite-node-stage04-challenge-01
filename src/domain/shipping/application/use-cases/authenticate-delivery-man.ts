@@ -1,5 +1,5 @@
 import { HashCompare } from "../cryptography/hash-compare";
-import { InvalidCredentialsError } from "../errors/invalid-credentials-error";
+import { InvalidCredentialsError } from "../../../core/errors/invalid-credentials-error";
 import { DeliveryManRepository } from "../repositories/delivery-man-repository";
 
 interface AuthenticateDeliveryManUseCaseRequest {

@@ -6,7 +6,7 @@ export class InMemoryDeliveryManRepository implements DeliveryManRepository {
 
   async save(deliveryMan: DeliveryMan): Promise<void> {
     const index = this.items.findIndex((item) =>
-      item.id.isEqual(deliveryMan.id)
+      item.id.equals(deliveryMan.id)
     );
     this.items[index] = deliveryMan;
   }
@@ -18,7 +18,7 @@ export class InMemoryDeliveryManRepository implements DeliveryManRepository {
 
   async delete(deliveryMan: DeliveryMan): Promise<void> {
     const index = this.items.findIndex((item) =>
-      item.id.isEqual(deliveryMan.id)
+      item.id.equals(deliveryMan.id)
     );
     this.items.splice(index, 1);
   }

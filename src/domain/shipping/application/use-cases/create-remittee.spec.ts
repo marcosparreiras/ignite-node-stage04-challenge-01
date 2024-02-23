@@ -2,8 +2,8 @@ import { makeDeliveryMan } from "../../../../../test/factories/make-delivery-man
 import { makeRemittee } from "../../../../../test/factories/make-remittee";
 import { InMemoryDeliveryManRepository } from "../../../../../test/repositories/in-memory-delivery-man-repository";
 import { InMemoryRemitteeRepository } from "../../../../../test/repositories/in-memory-remittee-repository";
-import { NotAllowedError } from "../errors/not-allowed-error";
-import { RemitteeAlreadyExistsError } from "../errors/remittee-already-exists-error";
+import { NotAllowedError } from "../../../core/errors/not-allowed-error";
+import { RemitteeAlreadyExistsError } from "../../../core/errors/remittee-already-exists-error";
 import { CreateRemitteeUseCase } from "./create-remittee";
 
 describe("CreateRemitteeUseCase [Use-Case]", () => {

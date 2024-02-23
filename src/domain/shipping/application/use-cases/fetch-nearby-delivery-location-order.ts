@@ -1,5 +1,5 @@
 import { Order } from "../../enterprise/entities/order";
-import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { ResourceNotFoundError } from "../../../core/errors/resource-not-found-error";
 import { DeliveryManRepository } from "../repositories/delivery-man-repository";
 import { OrderRepository } from "../repositories/order-repository";
 

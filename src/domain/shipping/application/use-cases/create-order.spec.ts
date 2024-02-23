@@ -3,9 +3,9 @@ import { makeRemittee } from "../../../../../test/factories/make-remittee";
 import { InMemoryDeliveryManRepository } from "../../../../../test/repositories/in-memory-delivery-man-repository";
 import { InMemoryOrderRepository } from "../../../../../test/repositories/in-memory-order-repository";
 import { InMemoryRemitteeRepository } from "../../../../../test/repositories/in-memory-remittee-repository";
-import { InvalidGeoCoordinatesError } from "../errors/invalid-geo-coordinates-error";
-import { NotAllowedError } from "../errors/not-allowed-error";
-import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { InvalidGeoCoordinatesError } from "../../../core/errors/invalid-geo-coordinates-error";
+import { NotAllowedError } from "../../../core/errors/not-allowed-error";
+import { ResourceNotFoundError } from "../../../core/errors/resource-not-found-error";
 import { CreateOrderUseCase } from "./create-order";
 
 describe("CreateOrderUseCase [Use-Case]", () => {

@@ -2,10 +2,10 @@ import { makeDeliveryMan } from "../../../../../test/factories/make-delivery-man
 import { makeOrder } from "../../../../../test/factories/make-order";
 import { InMemoryDeliveryManRepository } from "../../../../../test/repositories/in-memory-delivery-man-repository";
 import { InMemoryOrderRepository } from "../../../../../test/repositories/in-memory-order-repository";
-import { InvalidDeliveryStageError } from "../errors/invalid-delivery-stage-error";
-import { MissingDeliveryPhotoUrlError } from "../errors/missing-delivery-photo-error";
-import { NotAllowedError } from "../errors/not-allowed-error";
-import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { InvalidDeliveryStageError } from "../../../core/errors/invalid-delivery-stage-error";
+import { MissingDeliveryPhotoUrlError } from "../../../core/errors/missing-delivery-photo-error";
+import { NotAllowedError } from "../../../core/errors/not-allowed-error";
+import { ResourceNotFoundError } from "../../../core/errors/resource-not-found-error";
 import { UpdateOrderDeliveryStageUseCase } from "./update-order-delivery-stage";
 
 describe("UpdateOrderDeliveryStageUseCase [Use-Case]", () => {

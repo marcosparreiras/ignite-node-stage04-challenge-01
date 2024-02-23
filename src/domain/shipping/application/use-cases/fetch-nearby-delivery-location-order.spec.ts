@@ -3,7 +3,7 @@ import { makeOrder } from "../../../../../test/factories/make-order";
 import { InMemoryDeliveryManRepository } from "../../../../../test/repositories/in-memory-delivery-man-repository";
 import { InMemoryOrderRepository } from "../../../../../test/repositories/in-memory-order-repository";
 import { Location } from "../../enterprise/object-values/location";
-import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { ResourceNotFoundError } from "../../../core/errors/resource-not-found-error";
 import { FetchNearbyDeliveryLocationOrderUseCase } from "./fetch-nearby-delivery-location-order";
 
 describe("FetchNearbyDeliveryLocationOrderUseCase", () => {

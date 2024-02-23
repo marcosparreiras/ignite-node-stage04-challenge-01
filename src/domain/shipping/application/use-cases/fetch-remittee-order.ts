@@ -1,5 +1,5 @@
 import { Order } from "../../enterprise/entities/order";
-import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { ResourceNotFoundError } from "../../../core/errors/resource-not-found-error";
 import { OrderRepository } from "../repositories/order-repository";
 import { RemitteeRepository } from "../repositories/remittee-repository";
 

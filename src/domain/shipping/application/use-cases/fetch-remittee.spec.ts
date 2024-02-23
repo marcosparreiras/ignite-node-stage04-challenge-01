@@ -2,7 +2,7 @@ import { makeDeliveryMan } from "../../../../../test/factories/make-delivery-man
 import { makeRemittee } from "../../../../../test/factories/make-remittee";
 import { InMemoryDeliveryManRepository } from "../../../../../test/repositories/in-memory-delivery-man-repository";
 import { InMemoryRemitteeRepository } from "../../../../../test/repositories/in-memory-remittee-repository";
-import { NotAllowedError } from "../errors/not-allowed-error";
+import { NotAllowedError } from "../../../core/errors/not-allowed-error";
 import { FetchRemitteeUseCase } from "./fetch-remittee";
 
 describe("FetchRemitteeUseCase [Use-Case]", () => {
