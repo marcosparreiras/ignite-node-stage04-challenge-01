@@ -1,6 +1,6 @@
 import { NotAllowedError } from "../../../core/errors/not-allowed-error";
 import { ResourceNotFoundError } from "../../../core/errors/resource-not-found-error";
-import { Notification } from "../../enterprise/notification";
+import { Notification } from "../../enterprise/entities/notification";
 import { NotificationRepository } from "../repositories/notification-repository";
 
 interface ReadNotificationUseCaseRequest {

@@ -1,3 +1,4 @@
+import { DomainEvents } from "../../src/domain/core/events/domain-events";
 import { OrderRepository } from "../../src/domain/shipping/application/repositories/order-repository";
 import { Order } from "../../src/domain/shipping/enterprise/entities/order";
 import { Location } from "../../src/domain/shipping/enterprise/object-values/location";
@@ -70,6 +71,7 @@ export class InMemoryOrderRepository implements OrderRepository {
   async save(order: Order): Promise<void> {
     const index = this.items.findIndex((item) => item.id.equals(order.id));
     this.items[index] = order;
+    DomainEvents.dispatchEventsForAggregate(order.id);
   }
 
   async delete(order: Order): Promise<void> {

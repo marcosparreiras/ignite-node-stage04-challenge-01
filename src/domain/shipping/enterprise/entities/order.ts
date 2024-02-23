@@ -1,6 +1,7 @@
 import { Entity } from "../../../core/entities/entity";
 import { UniqueEntityId } from "../../../core/entities/unique-entity-id";
 import { Optional } from "../../../core/types/optional";
+import { OrderStatusUpdatedEvent } from "../events/order-status-updated";
 import { DeliveryStage } from "../object-values/delivery-stage";
 import { Location } from "../object-values/location";
 
@@ -48,6 +49,8 @@ export class Order extends Entity<OrderProps> {
 
   set deliveryStage(stage: DeliveryStage) {
     this.props.deliveryStage = stage;
+    this.touch();
+    this.addDomainEvent(new OrderStatusUpdatedEvent(this));
   }
 
   get deliveryConfirmationPhotoUrl(): string | null | undefined {
@@ -56,6 +59,7 @@ export class Order extends Entity<OrderProps> {
 
   set deliveryConfirmationPhotoUrl(url: string | null | undefined) {
     this.props.deliveryConfirmationPhotoUrl = url;
+    this.touch();
   }
 
   get createdAt() {
