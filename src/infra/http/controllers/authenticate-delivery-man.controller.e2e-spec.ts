@@ -1,14 +1,9 @@
 import { makePrismaDeliveryMan } from "../../../../test/factories/make-delivery-man";
-import { prisma } from "../../database/prisma/prisma";
 import request from "supertest";
 import { app } from "../app";
 import { HashService } from "../../cryptography/hash-service";
 
 describe("AuthenticateDeliveryMan [E2E]", () => {
-  afterAll(() => {
-    prisma.$disconnect();
-  });
-
   test("[POST] /delivery-men/session", async () => {
     const hashService = new HashService();
     const password = "123456";
