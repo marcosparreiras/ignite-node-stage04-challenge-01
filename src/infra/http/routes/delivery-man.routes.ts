@@ -1,7 +1,6 @@
 import { Request, Response, Router } from "express";
+import { authenticateDeliveryMan } from "../controllers/authenticate-delivery-man.controller";
 
 export const deliveryManRoutes = Router();
 
-deliveryManRoutes.get("/", (_request: Request, response: Response) => {
-  response.send("Delivery Man");
-});
+deliveryManRoutes.post("/session", authenticateDeliveryMan);
