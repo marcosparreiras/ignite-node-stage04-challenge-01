@@ -1,9 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import { z } from "zod";
-import { AuthenticateDeliveryManUseCase } from "../../../domain/shipping/application/use-cases/authenticate-delivery-man";
 import { InvalidCredentialsError } from "../../../domain/core/errors/invalid-credentials-error";
-import { InMemoryDeliveryManRepository } from "../../../../test/repositories/in-memory-delivery-man-repository";
-import { HashService } from "../../cryptography/hash-service";
+import { makeAuthenticateDeliveryManUseCase } from "../../factories/make-authenticate-delivery-man-use-case";
+import { Encrypter } from "../../cryptography/encrypter";
 
 export async function authenticateDeliveryMan(
   request: Request,
@@ -17,15 +16,15 @@ export async function authenticateDeliveryMan(
 
   try {
     const { cpf, password } = requestBodySchema.parse(request.body);
-
-    const deliveryManRepository = new InMemoryDeliveryManRepository();
-    const hashService = new HashService();
-    const authenticateDeliveryMan = new AuthenticateDeliveryManUseCase(
-      deliveryManRepository,
-      hashService
-    );
-
-    await authenticateDeliveryMan.execute({ cpf, password });
+    const authenticateDeliveryMan = makeAuthenticateDeliveryManUseCase();
+    const { deliveryMan } = await authenticateDeliveryMan.execute({
+      cpf,
+      password,
+    });
+    const token = await Encrypter.encrypt({
+      userId: deliveryMan.id.toString(),
+    });
+    response.status(201).json({ token });
   } catch (error: any) {
     switch (error.constructor) {
       case InvalidCredentialsError:

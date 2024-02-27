@@ -1,6 +1,7 @@
 import { HashCompare } from "../cryptography/hash-compare";
 import { InvalidCredentialsError } from "../../../core/errors/invalid-credentials-error";
 import { DeliveryManRepository } from "../repositories/delivery-man-repository";
+import { DeliveryMan } from "../../enterprise/entities/deliveryMan";
 
 interface AuthenticateDeliveryManUseCaseRequest {
   cpf: string;
@@ -8,7 +9,7 @@ interface AuthenticateDeliveryManUseCaseRequest {
 }
 
 interface AuthenticateDeliveryManUseCaseReposne {
-  success: boolean;
+  deliveryMan: DeliveryMan;
 }
 
 export class AuthenticateDeliveryManUseCase {
@@ -25,6 +26,7 @@ export class AuthenticateDeliveryManUseCase {
     if (!deliveryMan) {
       throw new InvalidCredentialsError();
     }
+
     const passwordIsValid = await this.hashCompare.compare(
       password,
       deliveryMan.password
@@ -33,6 +35,6 @@ export class AuthenticateDeliveryManUseCase {
     if (!passwordIsValid) {
       throw new InvalidCredentialsError();
     }
-    return { success: true };
+    return { deliveryMan };
   }
 }

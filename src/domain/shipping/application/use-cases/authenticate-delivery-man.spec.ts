@@ -30,7 +30,7 @@ describe("AuthenticateDeliveryManUseCase [Use-Case]", () => {
     inMemoryDeliveryManRepository.items.push(deliveryMan);
 
     const result = await sut.execute({ cpf, password });
-    expect(result.success).toEqual(true);
+    expect(result.deliveryMan).toBeTruthy();
   });
 
   it("should not be able to authenticate an unexistent delivery-man", async () => {
