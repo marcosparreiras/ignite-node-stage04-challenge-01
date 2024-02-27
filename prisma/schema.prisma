@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum DeliveryStage {
+  PACKING
+  AVAILABE_TO_DELIVERY
+  ON_ROAD
+  DELIVERED
+}
+
+model DeliveryMan {
+  id String @id() @default(uuid())
+  name String 
+  cpf String @unique()
+  password String
+  isAdmin Boolean @map("is_admin")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+
+  deliveries Order[]
+
+  @@map("delivery_men")
+}
+
+model Remittee {
+  id String @id() @default(uuid())
+  name String 
+  cpf String @unique()
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+
+  orders Order[]
+  notifications Notification[]
+ 
+  @@map("remittees")
+}
+
+
+model Order {
+  id String @id @default(uuid())
+  remitteeId String @map("remittee_id")
+  deliveryManId String @map("delivery_man_id")
+  longitude Decimal
+  latitude Decimal
+  stage DeliveryStage
+  isReturned Boolean @map("is_returned")
+  deliveryConfirmationPhotoUrl String? @map("delivery_confirmation_photo")
+  createdAt DateTime @default(now())  @map("created_at")
+  updatedAt DateTime? @map("updated_at") 
+
+  remittee Remittee @relation(fields: [remitteeId], references: [id])
+  deliveryMan DeliveryMan @relation(fields: [deliveryManId], references: [id])
+
+  @@map("orders")
+}
+
+
+model Notification {
+  id String @id @default(uuid())
+  recipientId String @map("recipient_id")
+  title String
+  content String
+  readAt DateTime? @map("read_at")
+  createdAt DateTime @default(now()) @map("created_at") 
+
+  recipient Remittee @relation(fields: [recipientId], references: [id])
+
+  @@map("notifications")
+}

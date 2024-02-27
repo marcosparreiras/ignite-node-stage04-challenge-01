@@ -3,7 +3,7 @@ import { z } from "zod";
 import { AuthenticateDeliveryManUseCase } from "../../../domain/shipping/application/use-cases/authenticate-delivery-man";
 import { InvalidCredentialsError } from "../../../domain/core/errors/invalid-credentials-error";
 import { InMemoryDeliveryManRepository } from "../../../../test/repositories/in-memory-delivery-man-repository";
-import { HashService } from "../cryptography/hash-service";
+import { HashService } from "../../cryptography/hash-service";
 
 export async function authenticateDeliveryMan(
   request: Request,

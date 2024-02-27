@@ -1,5 +1,5 @@
-import { FakeHashCompare } from "../../../../test/cryptography/fake-hash-compare";
-import { HashGenerator } from "../../../domain/shipping/application/cryptography/hash-generator";
+import { FakeHashCompare } from "../../../test/cryptography/fake-hash-compare";
+import { HashGenerator } from "../../domain/shipping/application/cryptography/hash-generator";
 import { hash, compare } from "bcryptjs";
 
 export class HashService implements FakeHashCompare, HashGenerator {
