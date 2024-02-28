@@ -2,6 +2,7 @@ import { makePrismaDeliveryMan } from "../../../../test/factories/make-delivery-
 import request from "supertest";
 import { app } from "../app";
 import { HashService } from "../../cryptography/hash-service";
+import { Encrypter } from "../../cryptography/encrypter";
 
 describe("AuthenticateDeliveryMan [E2E]", () => {
   test("[POST] /delivery-men/session", async () => {
@@ -20,5 +21,12 @@ describe("AuthenticateDeliveryMan [E2E]", () => {
 
     expect(response.statusCode).toEqual(201);
     expect(response.body.token).toBeTruthy();
+
+    const data = await Encrypter.decrypt(response.body.token);
+    expect(data).toEqual(
+      expect.objectContaining({
+        userId: deliveryMan.id.toString(),
+      })
+    );
   });
 });

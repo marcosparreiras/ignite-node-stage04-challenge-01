@@ -1,13 +1,13 @@
-import { AuthenticateDeliveryManUseCase } from "../../domain/shipping/application/use-cases/authenticate-delivery-man";
+import { CreateDeliveryManUseCase } from "../../domain/shipping/application/use-cases/create-delivery-man";
 import { HashService } from "../cryptography/hash-service";
 import { PrimsaDeliveryManRepository } from "../database/prisma/repositories/prisma-delivery-man-repository";
 
-export function makeAuthenticateDeliveryManUseCase() {
+export function makeCreateDeliveryManUseCase() {
   const deliveryManRepository = new PrimsaDeliveryManRepository();
-  const hashCompare = new HashService();
-  const useCase = new AuthenticateDeliveryManUseCase(
+  const hashGenerator = new HashService();
+  const useCase = new CreateDeliveryManUseCase(
     deliveryManRepository,
-    hashCompare
+    hashGenerator
   );
   return useCase;
 }

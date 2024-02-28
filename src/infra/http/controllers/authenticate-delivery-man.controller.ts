@@ -4,7 +4,7 @@ import { InvalidCredentialsError } from "../../../domain/core/errors/invalid-cre
 import { makeAuthenticateDeliveryManUseCase } from "../../factories/make-authenticate-delivery-man-use-case";
 import { Encrypter } from "../../cryptography/encrypter";
 
-export async function authenticateDeliveryMan(
+export async function authenticateDeliveryManController(
   request: Request,
   response: Response,
   next: NextFunction
@@ -24,7 +24,7 @@ export async function authenticateDeliveryMan(
     const token = await Encrypter.encrypt({
       userId: deliveryMan.id.toString(),
     });
-    response.status(201).json({ token });
+    return response.status(201).json({ token });
   } catch (error: any) {
     switch (error.constructor) {
       case InvalidCredentialsError:
