@@ -10,16 +10,23 @@ export async function createDeliveryManController(
   next: NextFunction
 ) {
   const requestBodySchema = z.object({
-    adminId: z.string(),
     cpf: z.string(),
     name: z.string(),
     password: z.string(),
   });
 
+  const requestAuthSchema = z.string();
+
   try {
-    const body = requestBodySchema.parse(request.body);
+    const { cpf, name, password } = requestBodySchema.parse(request.body);
+    const userId = requestAuthSchema.parse(request.userId);
     const createDeliveryMan = makeCreateDeliveryManUseCase();
-    await createDeliveryMan.execute(body);
+    await createDeliveryMan.execute({
+      cpf,
+      name,
+      password,
+      adminId: userId,
+    });
     return response.status(201).json();
   } catch (error: any) {
     switch (error.constructor) {
