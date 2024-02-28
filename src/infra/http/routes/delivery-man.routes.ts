@@ -5,6 +5,7 @@ import { createDeliveryManController } from "../controllers/create-delivery-man.
 import { getDeliveryManController } from "../controllers/get-delivery-man.controller";
 import { fecthDeliveryManController } from "../controllers/fetch-delivery-man.controller";
 import { updateDeliveryManController } from "../controllers/update-delivery-man.controller";
+import { deleteDeliveryManController } from "../controllers/delete-delivery-man.controller";
 
 export const deliveryManRoutes = Router();
 
@@ -15,3 +16,4 @@ deliveryManRoutes.post("/", createDeliveryManController);
 deliveryManRoutes.get("/", fecthDeliveryManController);
 deliveryManRoutes.get("/:id", getDeliveryManController);
 deliveryManRoutes.put("/:id", updateDeliveryManController);
+deliveryManRoutes.delete("/:id", deleteDeliveryManController);
