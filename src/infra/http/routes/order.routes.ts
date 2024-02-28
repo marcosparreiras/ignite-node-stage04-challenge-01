@@ -1,7 +1,8 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
+import { createOrderController } from "../controllers/create-order.controller";
+import { ensureAuth } from "../middlewares/ensure-auth";
 
 export const orderRoutes = Router();
 
-orderRoutes.get("/", (_request: Request, response: Response) => {
-  response.send("Orders");
-});
+orderRoutes.use(ensureAuth);
+orderRoutes.post("/", createOrderController);

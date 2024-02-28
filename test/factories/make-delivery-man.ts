@@ -3,7 +3,7 @@ import {
   DeliveryMan,
   DeliveryManProps,
 } from "../../src/domain/shipping/enterprise/entities/deliveryMan";
-import { da, faker } from "@faker-js/faker";
+import { faker } from "@faker-js/faker";
 import { prisma } from "../../src/infra/database/prisma/prisma";
 import { PrismaDeliveryManMapper } from "../../src/infra/database/prisma/mappers/prisma-delivery-man-mapper";
 

@@ -7,8 +7,8 @@ import { Encrypter } from "../../cryptography/encrypter";
 describe("DeleteDeliveryMan [E2E]", () => {
   test("[DELETE] /delivery-men/:id", async () => {
     const [admin, deliveryMan] = await Promise.all([
-      await makePrismaDeliveryMan({ isAdmin: true }),
-      await makePrismaDeliveryMan(),
+      makePrismaDeliveryMan({ isAdmin: true }),
+      makePrismaDeliveryMan(),
     ]);
 
     const token = await Encrypter.encrypt({ userId: admin.id.toString() });

@@ -46,7 +46,12 @@ export class CreateOrderUseCase {
       throw new ResourceNotFoundError();
     }
 
-    if (latitude > 90 || latitude < 0 || longitude > 180 || longitude < 0) {
+    if (
+      latitude > 90 ||
+      latitude < -90 ||
+      longitude > 180 ||
+      longitude < -180
+    ) {
       throw new InvalidGeoCoordinatesError();
     }
 
