@@ -10,12 +10,14 @@ import { returnOrderController } from "../controllers/return-order.controller";
 import multer from "multer";
 import { uploadOrderDeliveryConfirmationPhotoController } from "../controllers/upload-order-delivery-confirmation-photo.controller";
 import { fetchNearbyDeliveryLocationOrderController } from "../controllers/fetch-nearby-delivery-location-order.controller";
+import { fetchDeliveryManOrderController } from "../controllers/fetch-delivery-man-order.controller";
 
 const upload = multer();
 export const orderRoutes = Router();
 
 orderRoutes.use(ensureAuth);
-orderRoutes.get("/nearby", fetchNearbyDeliveryLocationOrderController);
+orderRoutes.get("/my/nearby", fetchNearbyDeliveryLocationOrderController);
+orderRoutes.get("/my", fetchDeliveryManOrderController);
 orderRoutes.post("/", createOrderController);
 orderRoutes.get("/", fetchOrderController);
 orderRoutes.get("/:id", getOrderController);

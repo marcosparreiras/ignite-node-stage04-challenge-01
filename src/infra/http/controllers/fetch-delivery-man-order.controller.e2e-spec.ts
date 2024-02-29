@@ -6,8 +6,8 @@ import { makePrismaRemittee } from "../../../../test/factories/make-remittee";
 import { makePrismaOrder } from "../../../../test/factories/make-order";
 import { Location } from "../../../domain/shipping/enterprise/object-values/location";
 
-describe("FetchNearbyDeliveryLocationOrder [E2E]", () => {
-  test("[GET] /orders/my/nearby", async () => {
+describe("FetchDeliveryManOrder [E2E]", () => {
+  test("[GET] /orders/my", async () => {
     const [deliveryMan, otherDeliveryMan, remittee] = await Promise.all([
       makePrismaDeliveryMan(),
       makePrismaDeliveryMan(),
@@ -37,15 +37,13 @@ describe("FetchNearbyDeliveryLocationOrder [E2E]", () => {
     });
 
     const response = await request(app)
-      .get(
-        "/orders/my/nearby?latitude=-19.944880942332365&longitude=-43.92969108432678"
-      )
+      .get("/orders/my")
       .set({
         Authorization: `Bearer ${token}`,
       })
       .send();
 
     expect(response.statusCode).toEqual(200);
-    expect(response.body.orders).toHaveLength(1);
+    expect(response.body.orders).toHaveLength(2);
   });
 });
