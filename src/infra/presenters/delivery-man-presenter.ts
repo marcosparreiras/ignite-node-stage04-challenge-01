@@ -2,6 +2,7 @@ import { DeliveryMan } from "../../domain/shipping/enterprise/entities/deliveryM
 
 export function deliveryManPresenter(data: DeliveryMan) {
   return {
+    id: data.id.toString(),
     name: data.name,
     cpf: data.cpf,
     isAdmin: data.isAdmin,

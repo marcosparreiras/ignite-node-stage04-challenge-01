@@ -1,19 +1,19 @@
 import { Order } from "../../domain/shipping/enterprise/entities/order";
 
-export function orderPresenter(order: Order) {
+export function orderPresenter(data: Order) {
   return {
-    id: order.id.toString(),
-    remitteeId: order.remitteId.toString(),
-    deliveryManId: order.deliveryManId.toString(),
+    id: data.id.toString(),
+    remitteeId: data.remitteId.toString(),
+    deliveryManId: data.deliveryManId.toString(),
     deliveryLocation: {
-      latitude: order.deliveryLocation.latitude,
-      longitude: order.deliveryLocation.longitude,
+      latitude: data.deliveryLocation.latitude,
+      longitude: data.deliveryLocation.longitude,
     },
-    deliveryStage: order.deliveryStage.isReturned
+    deliveryStage: data.deliveryStage.isReturned
       ? "RETURNED"
-      : order.deliveryStage.stage,
-    deliveryConfirmationPhotoUrl: order.deliveryConfirmationPhotoUrl,
-    createdAt: order.createdAt,
-    updatedAt: order.updatedAt,
+      : data.deliveryStage.stage,
+    deliveryConfirmationPhotoUrl: data.deliveryConfirmationPhotoUrl,
+    createdAt: data.createdAt,
+    updatedAt: data.updatedAt,
   };
 }
