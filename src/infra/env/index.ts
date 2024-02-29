@@ -6,6 +6,9 @@ export const envSchema = z.object({
   DATABASE_URL: z.string().url(),
   JWT_TOKEN: z.string(),
   NODE_ENV: z.string().default("development"),
+  AWS_BUCKET_NAME: z.string(),
+  AWS_ACCESS_KEY_ID: z.string(),
+  AWS_SECRET_KEY_ID: z.string(),
 });
 
 export const env = envSchema.parse(process.env);
