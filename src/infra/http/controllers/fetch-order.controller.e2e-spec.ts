@@ -13,28 +13,31 @@ describe("GetOrder [E2E]", () => {
       makePrismaRemittee(),
     ]);
 
-    const order = await makePrismaOrder({
-      remitteeId: remittee.id,
-      deliveryManId: deliveryMan.id,
-    });
+    await Promise.all([
+      makePrismaOrder({
+        remitteeId: remittee.id,
+        deliveryManId: deliveryMan.id,
+      }),
+      makePrismaOrder({
+        remitteeId: remittee.id,
+        deliveryManId: deliveryMan.id,
+      }),
+      makePrismaOrder({
+        remitteeId: remittee.id,
+        deliveryManId: deliveryMan.id,
+      }),
+    ]);
 
     const token = await Encrypter.encrypt({ userId: admin.id.toString() });
-    const orderId = order.id.toString();
 
     const response = await request(app)
-      .get(`/orders/${orderId}`)
+      .get("/orders")
       .set({
         Authorization: `Bearer ${token}`,
       })
       .send();
 
     expect(response.statusCode).toEqual(200);
-    expect(response.body.order).toEqual(
-      expect.objectContaining({
-        id: order.id.toString(),
-        remitteeId: remittee.id.toString(),
-        deliveryManId: deliveryMan.id.toString(),
-      })
-    );
+    expect(response.body.orders).toHaveLength(3);
   });
 });
