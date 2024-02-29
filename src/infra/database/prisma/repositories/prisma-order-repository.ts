@@ -30,10 +30,10 @@ export class PrismaOrderRepository implements OrderRepository {
   ): Promise<Order[]> {
     const orders = await prisma.$queryRaw<PrismaOrder[]>`
       SELECT * From orders
-      WHERE ( 6371 * acos( cos( radians(${latitude}) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(${longitude}) ) + sin( radians(${latitude}) ) * sin( radians( latitude ) ) ) ) <= 10 AND delivery_man_id = ${deliveryManId}
+      WHERE ( 6371 * acos( cos( radians(${latitude}) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(${longitude}) ) + sin( radians(${latitude}) ) * sin( radians( latitude ) ) ) ) <= 5 AND delivery_man_id = ${deliveryManId}
       LIMIT 20
       OFFSET ${(page - 1) * 20}
-    `;
+    `; // 5 km
     return orders.map(PrismaOrderMapper.toDomain);
   }
 

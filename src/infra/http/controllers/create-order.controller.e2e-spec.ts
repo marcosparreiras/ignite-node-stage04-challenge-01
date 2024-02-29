@@ -26,8 +26,6 @@ describe("CreateOrder [E2E]", () => {
         longitude: -43.92989090202169,
       });
 
-    console.log(JSON.stringify(response.body));
-
     expect(response.statusCode).toEqual(201);
 
     const orderOnRepository = await prisma.order.findFirst({
