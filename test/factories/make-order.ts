@@ -4,6 +4,8 @@ import {
   OrderProps,
 } from "../../src/domain/shipping/enterprise/entities/order";
 import { Location } from "../../src/domain/shipping/enterprise/object-values/location";
+import { PrismaOrderMapper } from "../../src/infra/database/prisma/mappers/prisma-order-mapper";
+import { prisma } from "../../src/infra/database/prisma/prisma";
 
 export function makeOrder(
   overide: Partial<OrderProps> = {},
@@ -18,4 +20,14 @@ export function makeOrder(
     },
     id
   );
+}
+
+export async function makePrismaOrder(
+  overide: Partial<OrderProps> = {},
+  id?: UniqueEntityId
+) {
+  const order = makeOrder(overide, id);
+  const data = PrismaOrderMapper.toPrisma(order);
+  await prisma.order.create({ data });
+  return order;
 }
