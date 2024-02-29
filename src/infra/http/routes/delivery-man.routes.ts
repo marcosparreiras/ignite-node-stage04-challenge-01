@@ -10,10 +10,8 @@ import { deleteDeliveryManController } from "../controllers/delete-delivery-man.
 export const deliveryManRoutes = Router();
 
 deliveryManRoutes.post("/session", authenticateDeliveryManController);
-
-deliveryManRoutes.use(ensureAuth);
-deliveryManRoutes.post("/", createDeliveryManController);
-deliveryManRoutes.get("/", fecthDeliveryManController);
-deliveryManRoutes.get("/:id", getDeliveryManController);
-deliveryManRoutes.put("/:id", updateDeliveryManController);
-deliveryManRoutes.delete("/:id", deleteDeliveryManController);
+deliveryManRoutes.post("/", ensureAuth, createDeliveryManController);
+deliveryManRoutes.get("/", ensureAuth, fecthDeliveryManController);
+deliveryManRoutes.get("/:id", ensureAuth, getDeliveryManController);
+deliveryManRoutes.put("/:id", ensureAuth, updateDeliveryManController);
+deliveryManRoutes.delete("/:id", ensureAuth, deleteDeliveryManController);

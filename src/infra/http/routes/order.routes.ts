@@ -17,7 +17,6 @@ const upload = multer();
 export const orderRoutes = Router();
 
 orderRoutes.get("/remittee/:cpf", fetchRemitteeOrder);
-
 orderRoutes.get(
   "/my/nearby",
   ensureAuth,

@@ -8,9 +8,8 @@ import { deleteRemitteeController } from "../controllers/delete-remittee.control
 
 export const remitteRoutes = Router();
 
-remitteRoutes.use(ensureAuth);
-remitteRoutes.post("/", createRemitteeController);
-remitteRoutes.get("/", fetchRemitteeController);
-remitteRoutes.get("/:id", getRemitteeController);
-remitteRoutes.put("/:id", updateRemitteeController);
-remitteRoutes.delete("/:id", deleteRemitteeController);
+remitteRoutes.post("/", ensureAuth, createRemitteeController);
+remitteRoutes.get("/", ensureAuth, fetchRemitteeController);
+remitteRoutes.get("/:id", ensureAuth, getRemitteeController);
+remitteRoutes.put("/:id", ensureAuth, updateRemitteeController);
+remitteRoutes.delete("/:id", ensureAuth, deleteRemitteeController);
