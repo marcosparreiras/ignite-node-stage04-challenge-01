@@ -4,6 +4,7 @@ import { ensureAuth } from "../middlewares/ensure-auth";
 import { getRemitteeController } from "../controllers/get-remittee.controller";
 import { fetchRemitteeController } from "../controllers/fetch-remittee.controller";
 import { updateRemitteeController } from "../controllers/update-remittee.controller";
+import { deleteRemitteeController } from "../controllers/delete-remittee.controller";
 
 export const remitteRoutes = Router();
 
@@ -12,3 +13,4 @@ remitteRoutes.post("/", createRemitteeController);
 remitteRoutes.get("/", fetchRemitteeController);
 remitteRoutes.get("/:id", getRemitteeController);
 remitteRoutes.put("/:id", updateRemitteeController);
+remitteRoutes.delete("/:id", deleteRemitteeController);
