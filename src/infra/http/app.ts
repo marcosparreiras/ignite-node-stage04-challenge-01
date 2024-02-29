@@ -1,3 +1,4 @@
+import "../subscriptions/on-order-status-update-subscription";
 import express from "express";
 import { routes } from "./routes";
 import { errorHandler } from "./middlewares/error-handler";
