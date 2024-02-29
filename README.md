@@ -37,6 +37,4 @@ O desafio consiste em desenvolver uma API para controle de encomendas de uma tra
 
 ### Diagrama de classes
 
-#### Shipping context
-
 ![alt text](./assets/shipping-class-diagram.png)
