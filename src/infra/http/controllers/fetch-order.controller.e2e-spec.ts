@@ -5,8 +5,8 @@ import { Encrypter } from "../../cryptography/encrypter";
 import { makePrismaRemittee } from "../../../../test/factories/make-remittee";
 import { makePrismaOrder } from "../../../../test/factories/make-order";
 
-describe("GetOrder [E2E]", () => {
-  test("[GET] /orders/:id", async () => {
+describe("FetchOrder [E2E]", () => {
+  test("[GET] /orders", async () => {
     const [admin, deliveryMan, remittee] = await Promise.all([
       makePrismaDeliveryMan({ isAdmin: true }),
       makePrismaDeliveryMan(),
