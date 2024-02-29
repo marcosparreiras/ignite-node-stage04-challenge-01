@@ -6,6 +6,7 @@ import { fetchOrderController } from "../controllers/fetch-order.controller";
 import { updateOrderController } from "../controllers/update-order.controller";
 import { deleteOrderController } from "../controllers/delete-order.controller";
 import { updateOrderDeliveryStageController } from "../controllers/update-order-delivery-stage.controller";
+import { returnOrderController } from "../controllers/return-order.controller";
 
 export const orderRoutes = Router();
 
@@ -16,3 +17,4 @@ orderRoutes.get("/:id", getOrderController);
 orderRoutes.put("/:id", updateOrderController);
 orderRoutes.delete("/:id", deleteOrderController);
 orderRoutes.patch("/:id/delivery-stage", updateOrderDeliveryStageController);
+orderRoutes.patch("/:id/return", returnOrderController);

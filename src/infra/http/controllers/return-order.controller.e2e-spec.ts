@@ -6,8 +6,8 @@ import { makePrismaRemittee } from "../../../../test/factories/make-remittee";
 import { makePrismaOrder } from "../../../../test/factories/make-order";
 import { prisma } from "../../database/prisma/prisma";
 
-describe("UpdateOrderDeliveryStage [E2E]", () => {
-  test("[PATCH] /orders/:id/delivery-stage", async () => {
+describe("ReturnOrder [E2E]", () => {
+  test("[PACTH] /orders/:id/return", async () => {
     const [deliveryMan, remittee] = await Promise.all([
       makePrismaDeliveryMan(),
       makePrismaRemittee(),
@@ -24,13 +24,11 @@ describe("UpdateOrderDeliveryStage [E2E]", () => {
     const orderId = order.id.toString();
 
     const response = await request(app)
-      .patch(`/orders/${orderId}/delivery-stage`)
+      .patch(`/orders/${orderId}/return`)
       .set({
         Authorization: `Bearer ${token}`,
       })
-      .send({
-        deliveryStage: "AVAILABE_TO_DELIVERY",
-      });
+      .send();
 
     expect(response.statusCode).toEqual(204);
 
@@ -42,7 +40,7 @@ describe("UpdateOrderDeliveryStage [E2E]", () => {
       expect.objectContaining({
         remitteeId: remittee.id.toString(),
         deliveryManId: deliveryMan.id.toString(),
-        stage: "AVAILABE_TO_DELIVERY",
+        isReturned: true,
       })
     );
   });
