@@ -5,6 +5,6 @@ import { remitteRoutes } from "./remittee.routes";
 
 export const routes = Router();
 
-routes.use("/delivery-men", deliveryManRoutes);
 routes.use("/orders", orderRoutes);
+routes.use("/delivery-men", deliveryManRoutes);
 routes.use("/remittees", remitteRoutes);
