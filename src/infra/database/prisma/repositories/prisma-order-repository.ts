@@ -1,25 +1,39 @@
 import { DomainEvents } from "../../../../domain/core/events/domain-events";
 import { OrderRepository } from "../../../../domain/shipping/application/repositories/order-repository";
 import { Order } from "../../../../domain/shipping/enterprise/entities/order";
+import { CacheRepository } from "../../../cache/cache-repository";
 import { PrismaOrderMapper } from "../mappers/prisma-order-mapper";
 import { prisma } from "../prisma";
 import { Order as PrismaOrder } from "@prisma/client";
 
 export class PrismaOrderRepository implements OrderRepository {
+  constructor(private cacheRepository: CacheRepository) {}
+
   async findById(id: string): Promise<Order | null> {
-    const order = await prisma.order.findUnique({ where: { id } });
-    if (!order) {
+    const cacheHit = await this.cacheRepository.get(`order:${id}`);
+    if (cacheHit) {
+      return JSON.parse(cacheHit);
+    }
+
+    const data = await prisma.order.findUnique({ where: { id } });
+    if (!data) {
       return null;
     }
-    return PrismaOrderMapper.toDomain(order);
+
+    const order = PrismaOrderMapper.toDomain(data);
+    await this.cacheRepository.set(`order:${id}`, JSON.stringify(order));
+
+    return order;
   }
 
   async findMany(page: number): Promise<Order[]> {
-    const orders = await prisma.order.findMany({
+    const data = await prisma.order.findMany({
       take: 20,
       skip: (page - 1) * 20,
     });
-    return orders.map(PrismaOrderMapper.toDomain);
+
+    const orders = data.map(PrismaOrderMapper.toDomain);
+    return orders;
   }
 
   async findManyNearbyDeliveryMan(
@@ -72,10 +86,13 @@ export class PrismaOrderRepository implements OrderRepository {
       where: { id: data.id },
       data,
     });
+    await this.cacheRepository.delete(`order:${data.id}`);
     DomainEvents.dispatchEventsForAggregate(order.id);
   }
 
   async delete(order: Order): Promise<void> {
-    await prisma.order.delete({ where: { id: order.id.toString() } });
+    const orderId = order.id.toString();
+    await prisma.order.delete({ where: { id: orderId } });
+    await this.cacheRepository.delete(`order:${orderId}`);
   }
 }
