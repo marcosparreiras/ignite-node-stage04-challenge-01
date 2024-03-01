@@ -1,9 +1,9 @@
 import request from "supertest";
 import { app } from "../app";
-import { makePrismaDeliveryMan } from "../../../../test/factories/make-delivery-man";
 import { Encrypter } from "../../cryptography/encrypter";
-import { makePrismaRemittee } from "../../../../test/factories/make-remittee";
 import { prisma } from "../../database/prisma/prisma";
+import { makePrismaRemittee } from "../../../../test/factories/prisma/make-prisma-remittee";
+import { makePrismaDeliveryMan } from "../../../../test/factories/prisma/make-prisma-delivery-man";
 
 describe("UpdateRemittee [E2E]", () => {
   test("[PUT] /remittees/:id", async () => {

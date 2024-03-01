@@ -4,8 +4,6 @@ import {
   Notification,
   NotificationProps,
 } from "../../src/domain/notifications/enterprise/entities/notification";
-import { PrismaNotificationMapper } from "../../src/infra/database/prisma/mappers/prisma-notification-mapper";
-import { prisma } from "../../src/infra/database/prisma/prisma";
 
 export function makeNotification(
   overide: Partial<NotificationProps> = {},
@@ -20,14 +18,4 @@ export function makeNotification(
     },
     id
   );
-}
-
-export async function makePrismaNotification(
-  overide: Partial<NotificationProps> = {},
-  id?: UniqueEntityId
-) {
-  const notification = makeNotification(overide, id);
-  const data = PrismaNotificationMapper.toPrisma(notification);
-  await prisma.notification.create({ data });
-  return notification;
 }

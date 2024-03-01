@@ -1,8 +1,8 @@
 import request from "supertest";
 import { app } from "../app";
-import { makePrismaDeliveryMan } from "../../../../test/factories/make-delivery-man";
 import { Encrypter } from "../../cryptography/encrypter";
 import { prisma } from "../../database/prisma/prisma";
+import { makePrismaDeliveryMan } from "../../../../test/factories/prisma/make-prisma-delivery-man";
 
 describe("CreateRemittee [E2E]", () => {
   test("[POST] /remittees", async () => {

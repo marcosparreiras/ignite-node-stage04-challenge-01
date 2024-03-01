@@ -1,8 +1,8 @@
-import { makePrismaDeliveryMan } from "../../../../test/factories/make-delivery-man";
 import request from "supertest";
 import { app } from "../app";
-import { makePrismaRemittee } from "../../../../test/factories/make-remittee";
-import { makePrismaOrder } from "../../../../test/factories/make-order";
+import { makePrismaRemittee } from "../../../../test/factories/prisma/make-prisma-remittee";
+import { makePrismaDeliveryMan } from "../../../../test/factories/prisma/make-prisma-delivery-man";
+import { makePrismaOrder } from "../../../../test/factories/prisma/make-prisma-order";
 
 describe("FetchRemitteeOrder [E2E]", () => {
   test("[GET] /orders/remittee/:cpf", async () => {

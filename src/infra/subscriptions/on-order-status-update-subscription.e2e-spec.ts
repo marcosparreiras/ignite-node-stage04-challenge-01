@@ -1,12 +1,12 @@
-import { makePrismaDeliveryMan } from "../../../test/factories/make-delivery-man";
-import { makePrismaOrder } from "../../../test/factories/make-order";
-import { makePrismaRemittee } from "../../../test/factories/make-remittee";
 import request from "supertest";
 import { app } from "../http/app";
 import { Encrypter } from "../cryptography/encrypter";
 import { waitFor } from "../../../test/utils/wait-for";
 import { prisma } from "../database/prisma/prisma";
 import { DomainEvents } from "../../domain/core/events/domain-events";
+import { makePrismaDeliveryMan } from "../../../test/factories/prisma/make-prisma-delivery-man";
+import { makePrismaRemittee } from "../../../test/factories/prisma/make-prisma-remittee";
+import { makePrismaOrder } from "../../../test/factories/prisma/make-prisma-order";
 
 describe("OnOrderStatusUpdate [E2E]", () => {
   beforeAll(() => {

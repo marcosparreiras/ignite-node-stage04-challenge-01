@@ -1,6 +1,6 @@
-import { makePrismaDeliveryMan } from "../../../../../test/factories/make-delivery-man";
-import { makePrismaOrder } from "../../../../../test/factories/make-order";
-import { makePrismaRemittee } from "../../../../../test/factories/make-remittee";
+import { makePrismaDeliveryMan } from "../../../../../test/factories/prisma/make-prisma-delivery-man";
+import { makePrismaOrder } from "../../../../../test/factories/prisma/make-prisma-order";
+import { makePrismaRemittee } from "../../../../../test/factories/prisma/make-prisma-remittee";
 import { CacheRepository } from "../../../cache/cache-repository";
 import { RedisCacheRepository } from "../../../cache/redis/redis-cache-repository";
 import { PrismaOrderRepository } from "./prisma-order-repository";

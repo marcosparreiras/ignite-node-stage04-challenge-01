@@ -1,9 +1,9 @@
-import { makePrismaDeliveryMan } from "../../../../test/factories/make-delivery-man";
 import request from "supertest";
 import { app } from "../app";
 import { Encrypter } from "../../cryptography/encrypter";
 import { prisma } from "../../database/prisma/prisma";
 import { HashService } from "../../cryptography/hash-service";
+import { makePrismaDeliveryMan } from "../../../../test/factories/prisma/make-prisma-delivery-man";
 
 describe("UpdateDeliveryMan [E2E]", () => {
   test("[PUT] /delivery-men/:id", async () => {

@@ -1,10 +1,10 @@
-import { makePrismaDeliveryMan } from "../../../../test/factories/make-delivery-man";
 import request from "supertest";
 import { app } from "../app";
 import { Encrypter } from "../../cryptography/encrypter";
-import { makePrismaRemittee } from "../../../../test/factories/make-remittee";
-import { makePrismaOrder } from "../../../../test/factories/make-order";
 import { prisma } from "../../database/prisma/prisma";
+import { makePrismaDeliveryMan } from "../../../../test/factories/prisma/make-prisma-delivery-man";
+import { makePrismaRemittee } from "../../../../test/factories/prisma/make-prisma-remittee";
+import { makePrismaOrder } from "../../../../test/factories/prisma/make-prisma-order";
 
 describe("UploadOrderDeliveryConfirmationPhoto [E2E]", () => {
   test("[PATCH] /orders/:id/upload-confirmation-photo", async () => {

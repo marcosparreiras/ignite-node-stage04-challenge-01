@@ -1,9 +1,9 @@
-import { makePrismaDeliveryMan } from "../../../../test/factories/make-delivery-man";
 import request from "supertest";
 import { app } from "../app";
 import { Encrypter } from "../../cryptography/encrypter";
-import { makePrismaRemittee } from "../../../../test/factories/make-remittee";
 import { prisma } from "../../database/prisma/prisma";
+import { makePrismaDeliveryMan } from "../../../../test/factories/prisma/make-prisma-delivery-man";
+import { makePrismaRemittee } from "../../../../test/factories/prisma/make-prisma-remittee";
 
 describe("SendNotification [E2E]", () => {
   test("[POST] /notifications", async () => {

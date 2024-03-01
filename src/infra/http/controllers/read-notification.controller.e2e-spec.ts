@@ -1,8 +1,8 @@
 import request from "supertest";
 import { app } from "../app";
-import { makePrismaRemittee } from "../../../../test/factories/make-remittee";
 import { prisma } from "../../database/prisma/prisma";
-import { makePrismaNotification } from "../../../../test/factories/make-notification";
+import { makePrismaRemittee } from "../../../../test/factories/prisma/make-prisma-remittee";
+import { makePrismaNotification } from "../../../../test/factories/prisma/make-prisma-notification";
 
 describe("ReadNotification [E2E]", () => {
   test("[PATCH] /notifications/:id", async () => {

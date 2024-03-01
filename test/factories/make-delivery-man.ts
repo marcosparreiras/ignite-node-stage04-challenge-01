@@ -4,8 +4,6 @@ import {
   DeliveryManProps,
 } from "../../src/domain/shipping/enterprise/entities/deliveryMan";
 import { faker } from "@faker-js/faker";
-import { prisma } from "../../src/infra/database/prisma/prisma";
-import { PrismaDeliveryManMapper } from "../../src/infra/database/prisma/mappers/prisma-delivery-man-mapper";
 
 export function makeDeliveryMan(
   overide: Partial<DeliveryManProps> = {},
@@ -20,14 +18,4 @@ export function makeDeliveryMan(
     },
     id
   );
-}
-
-export async function makePrismaDeliveryMan(
-  overide: Partial<DeliveryManProps> = {},
-  id?: UniqueEntityId
-) {
-  const deliveryMan = makeDeliveryMan(overide, id);
-  const data = PrismaDeliveryManMapper.toPrisma(deliveryMan);
-  await prisma.deliveryMan.create({ data });
-  return deliveryMan;
 }
